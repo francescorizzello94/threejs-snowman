@@ -1,0 +1,31 @@
+{
+  "name": "threejs-snowman",
+  "version": "1.0.0",
+  "description": "Threejs snowman object",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/francescorizzello94/threejs-snowman.git"
+  },
+  "keywords": [
+    "threejs",
+    "snowman"
+  ],
+  "author": "Francesco Rizzello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francescorizzello94/threejs-snowman/issues"
+  },
+  "homepage": "https://github.com/francescorizzello94/threejs-snowman#readme",
+  "dependencies": {
+    "dat.gui": "^0.7.9",
+    "three": "^0.159.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.10"
+  }
+}
