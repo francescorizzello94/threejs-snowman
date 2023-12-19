@@ -91,12 +91,13 @@ function init() {
 
     // Create controls for the GUI
     const controls = new function () {
-        // Add controls...
-        // this.scaleX = 1;
+        this.toggleSnowFall = function() {
+            snow.visible = !snow.visible;
+        }
     };
     // Create the GUI
     const gui = new dat.GUI();
-    // gui.add(controls, 'scaleX', 0, 5);
+    gui.add(controls, 'toggleSnowFall').name('Toggle snowfall');
 
     // Function for re-rendering/animating the scene
     function tick() {
