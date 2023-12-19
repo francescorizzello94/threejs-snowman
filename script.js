@@ -1,6 +1,3 @@
-import * as THREE from 'three';
-import * as dat from 'dat.gui';
-
 function init() {
     const scene = new THREE.Scene();
     
@@ -37,6 +34,53 @@ function init() {
     const ambientLight = new THREE.AmbientLight(0x404040);
     scene.add(ambientLight);
 
+    // Add snow
+
+    const snowParticleCount = 5000;
+    // each snow particle has x, y and z coordinates
+    const snowParticlesPositions = new Float32Array(snowParticleCount * 3);
+
+    for (let i = 0; i < 1000; i++) {
+        snowParticlesPositions[i * 3 + 0] = Math.random() * 200 - 100;
+        snowParticlesPositions[i * 3 + 1] = Math.random() * 200 - 100;
+        snowParticlesPositions[i * 3 + 2] = Math.random() * 200 - 100;
+    }
+
+    const snowGeometry = new THREE.BufferGeometry;
+    snowGeometry.setAttribute('position', new THREE.BufferAttribute(snowParticlesPositions, 3));
+    const snowMaterial = new THREE.PointsMaterial({color: 0xFFFFFF, size: 0.5});
+    
+    const snow = new THREE.Points(snowGeometry, snowMaterial);
+    scene.add(snow);
+
+    // Regulate snow speed
+
+    const snowSpeed = new Float32Array(snowParticleCount);
+    for (let i = 0; i < snowParticleCount; i++) {
+        // snowflakes fall at random speed
+        snowSpeed[i] = 0.1 + Math.random() * 0.2;
+    }
+
+    // Snow motion effects
+
+    function addSnowMotionEffects() {
+        for (let i = 0;  i < snowParticleCount; i++) {
+            snowGeometry.attributes.position.array[i * 3 + 1] -= snowSpeed[i];
+            if (snowGeometry.attributes.position.array[i * 3 + 1] < -100) {
+                // reset snowflake to the top
+                snowGeometry.attributes.position.array[i * 3 + 1] = 100;
+                // reset x position to spread snowflakes out again
+                snowGeometry.attributes.position.array[i * 3 + 0] = Math.random() * 200 - 100;
+            }
+
+            // add sway based on snowflake's y poistion
+            snowGeometry.attributes.position.array[i * 3 + 0] += Math.sin(Date.now() * 0.001 + snowGeometry.attributes.position.array[i * 3 + 1]) * 0.01;
+        }
+
+            // update the snowflakes' position
+        snowGeometry.attributes.position.needsUpdate = true;
+    }
+
     // Set up webgl renderer
 
     const renderer = new THREE.WebGLRenderer();
@@ -56,6 +100,7 @@ function init() {
 
     // Function for re-rendering/animating the scene
     function tick() {
+        addSnowMotionEffects();
         requestAnimationFrame(tick);
         renderer.render(scene, camera);
     }
