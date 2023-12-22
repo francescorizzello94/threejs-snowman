@@ -56,6 +56,19 @@ function init() {
   nose.rotation.x = Math.PI / 2;
   scene.add(nose);
 
+  // Black Eyes
+
+  const eyeGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+  const eyeMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+  leftEye.position.set(-1.5, 14, 4.8);
+
+  const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+  rightEye.position.set(1.5, 14, 4.8);
+
+  scene.add(leftEye);
+  scene.add(rightEye);
+
   scene.add(snowManHead);
   scene.add(snowmanTorso);
   scene.add(snowmanBase);
