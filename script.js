@@ -1,3 +1,7 @@
+import * as THREE from "three";
+import dat from "dat.gui";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
 function init() {
   const scene = new THREE.Scene();
 
@@ -188,7 +192,7 @@ function init() {
   const snowSpeed = new Float32Array(snowParticleCount);
   for (let i = 0; i < snowParticleCount; i++) {
     // snowflakes fall at random speed
-    snowSpeed[i] = 0.1 + Math.random() * 0.2;
+    snowSpeed[i] = 0.05 + Math.random() * 0.02;
   }
 
   // Snow motion effects
@@ -220,12 +224,17 @@ function init() {
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(sizes.width, sizes.height);
 
+  // Create orbit controls
+
+  const orbit = new OrbitControls(camera, renderer.domElement);
+
   // Add the output of the render function to the HTML
   document.body.appendChild(renderer.domElement);
 
   // Function for re-rendering/animating the scene
   function tick() {
     addSnowMotionEffects();
+    orbit.update();
     requestAnimationFrame(tick);
     renderer.render(scene, camera);
   }
