@@ -33,6 +33,20 @@ function init() {
   snowmanTorso.position.set(0, 0, 0);
   snowmanBase.position.set(0, -15, 0);
 
+  // Hat Brim
+  const brimGeometry = new THREE.CylinderGeometry(5, 5, 1, 32);
+  const brimMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+  const brim = new THREE.Mesh(brimGeometry, brimMaterial);
+  brim.position.set(0, 16, 0);
+  scene.add(brim);
+
+  // Hat Top
+  const hatTopGeometry = new THREE.CylinderGeometry(3, 4, 5, 32);
+  const hatTopMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+  const hatTop = new THREE.Mesh(hatTopGeometry, hatTopMaterial);
+  hatTop.position.set(0, 18.5, 0);
+  scene.add(hatTop);
+
   scene.add(snowManHead);
   scene.add(snowmanTorso);
   scene.add(snowmanBase);
