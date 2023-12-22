@@ -78,6 +78,21 @@ function init() {
   smile.rotation.x = Math.PI;
   scene.add(smile);
 
+  // Black buttons
+
+  const buttonGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+  const buttonMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+
+  const buttons = [];
+  const buttonPositions = [2, 0, -3];
+
+  for (let i = 0; i < buttonPositions.length; i++) {
+    const button = new THREE.Mesh(buttonGeometry, buttonMaterial);
+    button.position.set(0, buttonPositions[i], 6.5);
+    buttons.push(button);
+    scene.add(button);
+  }
+
   scene.add(snowManHead);
   scene.add(snowmanTorso);
   scene.add(snowmanBase);
