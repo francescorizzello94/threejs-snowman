@@ -69,6 +69,15 @@ function init() {
   scene.add(leftEye);
   scene.add(rightEye);
 
+  // Black smile
+
+  const smileGeometry = new THREE.TorusGeometry(1.5, 0.2, 2, 20, Math.PI);
+  const smileMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  const smile = new THREE.Mesh(smileGeometry, smileMaterial);
+  smile.position.set(0, 10, 4.5);
+  smile.rotation.x = Math.PI;
+  scene.add(smile);
+
   scene.add(snowManHead);
   scene.add(snowmanTorso);
   scene.add(snowmanBase);
