@@ -93,6 +93,45 @@ function init() {
     scene.add(button);
   }
 
+  // Main Branches
+
+  const armGeometry = new THREE.CylinderGeometry(0.1, 0.1, 10, 8);
+  const armMaterial = new THREE.MeshPhongMaterial({ color: 0x8b4513 });
+  const leftArm = new THREE.Mesh(armGeometry, armMaterial);
+  const rightArm = new THREE.Mesh(armGeometry, armMaterial);
+
+  leftArm.position.set(-8, 0, 0);
+  leftArm.rotation.z = Math.PI / 4;
+
+  rightArm.position.set(8, 0, 0);
+  rightArm.rotation.z = -Math.PI / 4;
+
+  scene.add(leftArm);
+  scene.add(rightArm);
+
+  // Offshoots
+
+  const offshootGeometry = new THREE.BoxGeometry(0.1, 0.1, 3);
+  const offshootMaterial = new THREE.MeshPhongMaterial({ color: 0x8b4513 });
+
+  function addOffshoots(arm, yOffset, zOffset) {
+    const offshoot = new THREE.Mesh(offshootGeometry, offshootMaterial);
+    offshoot.position.y = yOffset;
+    offshoot.position.z = zOffset;
+    offshoot.rotation.x = Math.random() * Math.PI;
+    arm.add(offshoot);
+  }
+
+  // Add offshoots to the left arm
+  addOffshoots(leftArm, 4, 1);
+  addOffshoots(leftArm, 3, -1);
+  addOffshoots(leftArm, 2, 0.5);
+
+  // Add offshoots to the right arm
+  addOffshoots(rightArm, 4, 1);
+  addOffshoots(rightArm, 3, -1);
+  addOffshoots(rightArm, 2, 0.5);
+
   scene.add(snowManHead);
   scene.add(snowmanTorso);
   scene.add(snowmanBase);
