@@ -47,6 +47,15 @@ function init() {
   hatTop.position.set(0, 18.5, 0);
   scene.add(hatTop);
 
+  // Carrot Nose
+
+  const noseGeometry = new THREE.CylinderGeometry(0.5, 0, 3, 32);
+  const noseMaterial = new THREE.MeshBasicMaterial({ color: 0xffa500 });
+  const nose = new THREE.Mesh(noseGeometry, noseMaterial);
+  nose.position.set(0, 12, 5);
+  nose.rotation.x = Math.PI / 2;
+  scene.add(nose);
+
   scene.add(snowManHead);
   scene.add(snowmanTorso);
   scene.add(snowmanBase);
