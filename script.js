@@ -168,11 +168,11 @@ function init() {
 
   // Add snow
 
-  const snowParticleCount = 5000;
+  const snowParticleCount = 2000;
   // each snow particle has x, y and z coordinates
   const snowParticlesPositions = new Float32Array(snowParticleCount * 3);
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < snowParticleCount; i++) {
     snowParticlesPositions[i * 3 + 0] = Math.random() * 200 - 100;
     snowParticlesPositions[i * 3 + 1] = Math.random() * 200 - 100;
     snowParticlesPositions[i * 3 + 2] = Math.random() * 200 - 100;
