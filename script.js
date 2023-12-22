@@ -99,30 +99,32 @@ function init() {
 
   // Main Branches
 
-  const armGeometry = new THREE.CylinderGeometry(0.1, 0.1, 10, 8);
+  const armGeometry = new THREE.CylinderGeometry(0.3, 0.3, 10, 8);
   const armMaterial = new THREE.MeshPhongMaterial({ color: 0x8b4513 });
   const leftArm = new THREE.Mesh(armGeometry, armMaterial);
   const rightArm = new THREE.Mesh(armGeometry, armMaterial);
 
   leftArm.position.set(-8, 0, 0);
   leftArm.rotation.z = Math.PI / 4;
+  leftArm.rotation.y = -Math.PI / 8;
 
   rightArm.position.set(8, 0, 0);
   rightArm.rotation.z = -Math.PI / 4;
+  rightArm.rotation.y = Math.PI / 8;
 
   scene.add(leftArm);
   scene.add(rightArm);
 
   // Offshoots
 
-  const offshootGeometry = new THREE.BoxGeometry(0.1, 0.1, 3);
+  const offshootGeometry = new THREE.BoxGeometry(0.2, 0.2, 3);
   const offshootMaterial = new THREE.MeshPhongMaterial({ color: 0x8b4513 });
 
   function addOffshoots(arm, yOffset, zOffset) {
     const offshoot = new THREE.Mesh(offshootGeometry, offshootMaterial);
     offshoot.position.y = yOffset;
     offshoot.position.z = zOffset;
-    offshoot.rotation.x = Math.random() * Math.PI;
+    offshoot.rotation.x = 0;
     arm.add(offshoot);
   }
 
