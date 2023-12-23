@@ -221,28 +221,6 @@ function init() {
     snowGeometry.attributes.position.needsUpdate = true;
   }
 
-  // Snow plane
-
-  /*   const textureLoader = new THREE.TextureLoader();
-  const whiteTexture = textureLoader.load("assets/xmas-blue-stars-texture.jpg");
-
-  const snowPlaneGeometry = new THREE.PlaneGeometry(200, 200);
-  const snowPlaneMaterial = new THREE.MeshStandardMaterial({
-    map: whiteTexture,
-    color: 0xffffff,
-    roughness: 0.8,
-    metalness: 0,
-  });
-
-  const snowPlane = new THREE.Mesh(snowPlaneGeometry, snowPlaneMaterial);
-
-  snowPlane.rotation.x = -Math.PI / 2;
-  snowPlane.position.y = -15;
-
-  snowPlane.receiveShadow = false;
-
-  scene.add(snowPlane); */
-
   // Set up webgl renderer
 
   const renderer = new THREE.WebGLRenderer();
