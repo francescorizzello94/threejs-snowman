@@ -20,7 +20,7 @@ function init() {
 
   // Snowman's body
 
-  const snowManHead = new THREE.Mesh(
+  const snowmanHead = new THREE.Mesh(
     new THREE.SphereGeometry(5, 32, 32),
     new THREE.MeshBasicMaterial({ color: 0xffffff })
   );
@@ -33,7 +33,7 @@ function init() {
     new THREE.MeshBasicMaterial({ color: 0xffffff })
   );
 
-  snowManHead.position.set(0, 12, 0);
+  snowmanHead.position.set(0, 12, 0);
   snowmanTorso.position.set(0, 0, 0);
   snowmanBase.position.set(0, -15, 0);
 
@@ -138,19 +138,19 @@ function init() {
   addOffshoots(rightArm, 3, -1);
   addOffshoots(rightArm, 2, 0.5);
 
-  scene.add(snowManHead);
+  scene.add(snowmanHead);
   scene.add(snowmanTorso);
   scene.add(snowmanBase);
 
   // Directional light
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-  directionalLight.position.set(0, 1, 0);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(1, 1, 1);
   scene.add(directionalLight);
 
   // Ambient light
 
-  const ambientLight = new THREE.AmbientLight(0x404040);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1);
   scene.add(ambientLight);
 
   // Create controls for the GUI
@@ -220,6 +220,28 @@ function init() {
     // update the snowflakes' position
     snowGeometry.attributes.position.needsUpdate = true;
   }
+
+  // Snow plane
+
+  /*   const textureLoader = new THREE.TextureLoader();
+  const whiteTexture = textureLoader.load("assets/xmas-blue-stars-texture.jpg");
+
+  const snowPlaneGeometry = new THREE.PlaneGeometry(200, 200);
+  const snowPlaneMaterial = new THREE.MeshStandardMaterial({
+    map: whiteTexture,
+    color: 0xffffff,
+    roughness: 0.8,
+    metalness: 0,
+  });
+
+  const snowPlane = new THREE.Mesh(snowPlaneGeometry, snowPlaneMaterial);
+
+  snowPlane.rotation.x = -Math.PI / 2;
+  snowPlane.position.y = -15;
+
+  snowPlane.receiveShadow = false;
+
+  scene.add(snowPlane); */
 
   // Set up webgl renderer
 
