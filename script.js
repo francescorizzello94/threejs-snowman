@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import dat from "dat.gui";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
 
 function init() {
   const scene = new THREE.Scene();
@@ -153,6 +154,25 @@ function init() {
   const ambientLight = new THREE.AmbientLight(0xffffff, 1);
   scene.add(ambientLight);
 
+  // Function to save the exported string as a file
+
+  function saveString(text, filename) {
+    const blob = new Blob([text], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+  }
+
+  // Export GLTF function
+
+  function exportGLTF() {
+    const exporter = new GLTFExporter();
+    exporter.parse(scene, (gltf) => {
+      saveString(JSON.stringify(gltf), "snowman_scene.gltf");
+    });
+  }
+
   // Create controls for the GUI
   const controls = new (function () {
     this.snowVisible = false;
@@ -165,6 +185,10 @@ function init() {
     .onChange(function (value) {
       snow.visible = value;
     });
+
+  // Add export folder
+
+  gui.add({ exportGLTF }, "exportGLTF").name("Export to GLTF");
 
   // Add snow
 
