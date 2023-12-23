@@ -247,7 +247,7 @@ function init() {
 
   // Set up webgl renderer
 
-  const renderer = new THREE.WebGLRenderer();
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(sizes.width, sizes.height);
 
   // Create orbit controls
